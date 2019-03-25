@@ -1,0 +1,19 @@
+parameters:
+    loc: 'une valeur'
+
+services:
+#    riata_example.example:
+#        class: Riata\ExampleBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    riata_example.exercice:
+        class: Riata\ExampleBundle\ExerciceService\Exercice
+        arguments: 
+            - "@doctrine.orm.entity_manager"
+            - "plain_value"
+            - %loc%
+    riata_example.show_connection:
+        class: Riata\ExampleBundle\EventSubscriber\ShowConnectionEventSubscriber
+        arguments:
+            - "@service_container"
+        tags: 
+            - { name : 'kernel.event_subscriber'}
